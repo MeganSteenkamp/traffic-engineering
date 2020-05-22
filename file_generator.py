@@ -17,68 +17,112 @@ class FileGenerator:
 
 
     def __init__(self, x, y, z):
-        """ A property for each constraint in the optimization formulation """
+        """ A property for each set of constraints in the optimization formulation """
+        # Initialization variables
         self.x = x
         self.y = y
         self.z = z
-        self.filename = ""
-        self.set_filename()
+        self.filename = self.set_filename()
 
         # Lists of strings for LP file output for each constraint
-        self.demand = ""
-        self.capp1 = ""
-        self.capp2 = ""
-        self.transit = ""
+        self.demand = self.demand_constraints()
+        self.capp1 = self.capp1_constraints()
+        self.capp2 = self.capp2_constraints()
+        self.transit = self.transit_constraints()
         self.binary_var = ""
         self.equal_path = ""
         self.bounds = ""
         self.binaries = ""
 
+        # Output the LP file
+        self.write_file()
+
 
     def demand_constraints(self):
-        """ Generates string with each line being a demand volume constraint """
-        # I think we can just output a multi-line string at the end of each method
-        # by using something like:
-        # self.demand '\n'.join(demand_constraints)
-        pass
+        """ Returns string with each line being a demand volume constraint
+            Demand volume in spec is equal to i+j
+        """
+        constraints = []
+        for i in range(1, self.x + 1):
+            for j in range(1, self.z + 1):
+                equation = f"dem{i}{j}: "
+                demand_volumes = []
+                for k in range(1, self.y + 1):
+                    demand_volumes.append(f"x{i}{k}{j}")
+                equation += " + ".join(demand_volumes) + f" = {i + j}"
+                constraints.append(equation)
+        demand_constraints = "\n".join(constraints)
+        return demand_constraints
 
 
     def capp1_constraints(self):
-        """ Generates a string with each line being a capacity constraint for the capacity
+        """ Returns a string with each line being a capacity constraint for the capacity
             from a source node to a transit node
         """
-        pass
+        constraints = []
+        for i in range(1, self.x + 1):
+            for k in range(1, self.y + 1):
+                equation = f"capS{i}{k}: "  # Need S to differentiate between the two capacity constraints
+                capp1 = []
+                for j in range(1, self.z + 1):
+                    capp1.append(f"x{i}{k}{j}")
+                equation += " + ".join(capp1) + f" - c{i}{k} <= 0"
+                constraints.append(equation)
+        capp1_constraints = "\n".join(constraints)
+        return capp1_constraints
 
 
     def capp2_constraints(self):
-        """ Generates a string with each line being a capacity constraint for the capacity
+        """ Returns a string with each line being a capacity constraint for the capacity
             from a transit node to a destination node
         """
-        pass
+        constraints = []
+        for j in range(1, self.z + 1):
+            for k in range(1, self.y + 1):
+                equation = f"capD{k}{j}: "
+                capp2 = []
+                for i in range(1, self.x + 1):
+                    capp2.append(f"x{i}{k}{j}")
+                equation += " + ".join(capp2) + f" - d{k}{j} <= 0"
+                constraints.append(equation)
+        capp2_constraints = "\n".join(constraints)
+        return capp2_constraints
 
 
     def transit_constraints(self):
-        """ Generates a string with each line being a transit node load constraint """
-        pass
+        """ Returns a string with each line being a transit node load constraint """
+        constraints = []
+        for k in range(1, self.y + 1):
+            equation = f"transit{k}: "
+            transit = []
+            for i in range(1, self.x + 1):
+                for j in range(1, self.z + 1):
+                    transit.append(f"x{i}{k}{j}")
+            equation += " + ".join(transit) + f" - r <= 0"
+            constraints.append(equation)
+        transit_constraints = "\n".join(constraints)
+        return transit_constraints
 
 
     def binary_var_constraints(self):
-        """ Generates a string with each line being a binary variable constraint """
+        """ Returns a string with each line being a binary variable constraint """
         pass
 
 
     def equal_path_constraints(self):
-        """ Generates a string with each line being an equal path flow constraint """
+        """ Returns a string with each line being an equal path flow constraint """
         pass
 
 
     def bounds(self):
-        """ Generates a string with each line being a non-negativity constraint """
+        """ Returns a string with each line being a non-negativity constraint.
+            This will go under the 'Bounds' heading.
+        """
         pass
 
 
     def binaries(self):
-        """ Generates a string with each line being a binary constraint.
+        """ Returns a string with each line being a binary constraint.
             This will go under the 'Binaries' heading.
         """
         pass
@@ -86,29 +130,15 @@ class FileGenerator:
 
     def set_filename(self):
         """ Sets the filename to be XYZ.lp"""
-        self.filename = f"{self.x}{self.y}{self.z}.lp"
+        return f"{self.x}{self.y}{self.z}.lp"
 
 
     def create_file_content(self):
         """ Combines the content of all constraints to create the content for the lp file """
         # TODO: Decide whether we need r >-= 0 constraint
         return \
-            f"""Minimize
-                obj: r
-                Subject To
-                {self.demand}
-                {self.capp1}
-                {self.capp2}
-                {self.transit}
-                {self.binary_var}
-                {self.equal_path}
-                Bounds
-                {self.bounds}
-                0 <= r
-                Binaries
-                {self.binaries}
-                End
-            """
+            f"Minimize\nobj: r\nSubject To\n{self.demand}\n{self.capp1}\n{self.capp2}\n{self.transit}\n" \
+            f"{self.binary_var}\n{self.equal_path}\nBounds\n{self.bounds}\n0 <= r\nBinaries\n{self.binaries}\nEnd"
 
 
     def write_file(self):
