@@ -121,6 +121,7 @@ class FileGenerator:
                 equation += " = 2"
                 constraints.append(equation)
         binary_constraints = "\n".join(constraints)
+        binary_constraints += "\n"
         return binary_constraints
 
     def equal_path_constraints(self):
