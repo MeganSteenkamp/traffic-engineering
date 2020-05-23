@@ -116,7 +116,7 @@ class FileGenerator:
                 equation = f"\tbin{i}{j}: "
                 constants = []
                 for k in range(1, self.y + 1):
-                     constants.append(f"u_{i}{k}{j}")
+                     constants.append(f"u{i}{k}{j}")
                 equation += " + ".join(constants)
                 equation += " = 2"
                 constraints.append(equation)
@@ -130,7 +130,7 @@ class FileGenerator:
         for i in range(1, self.x + 1):
             for j in range(1, self.z + 1):
                 for k in range(1, self.y + 1):
-                    equation = f"\teqlPath{i}{k}{j}: x{i}{k}{j} = (u{i}{k}{j} * {i + j}) / 2"
+                    equation = f"\teqlPath{i}{k}{j}: 2 x{i}{k}{j} - {i + j} u{i}{k}{j} = 0"
                     constraints.append(equation)
         equal_path_constraints = "\n".join(constraints)
         equal_path_constraints += "\n"
@@ -177,23 +177,24 @@ class FileGenerator:
 
     def set_filename(self):
         """ Sets the filename to be XYZ.lp"""
-        return f"{self.x}{self.y}{self.z}.lp"
+        return f"files/{self.x}{self.y}{self.z}.lp"
 
 
     def create_file_content(self):
         """ Combines the content of all constraints to create the content for the lp file """
-        return ("Minimise: \n"
-                "\tobj: r\n\n"
+        return ("Minimize \n"
+                "\tobj: r\n\n\n"
                 "Subject To\n"
-                    f"{self.demand}"
-                    f"{self.capp1}"
-                    f"{self.transit}"
-                    f"{self.binary_var}"
-                    f"{self.equal_path}\n"
+                    f"{self.demand}\n"
+                    f"{self.capp1}\n"
+                    f"{self.capp2}\n"
+                    f"{self.transit}\n"
+                    f"{self.binary_var}\n"
+                    f"{self.equal_path}\n\n"
                 "Bounds\n"
-                    f"{self.bounds}\n"
+                    f"{self.bounds}\n\n"
                 "Binaries\n"
-                    f"{self.binaries}\n"
+                    f"{self.binaries}\n\n"
                 "End")
 
 

@@ -1,0 +1,307 @@
+
+Welcome to IBM(R) ILOG(R) CPLEX(R) Interactive Optimizer Community Edition 12.9.0.0
+  with Simplex, Mixed Integer & Barrier Optimizers
+5725-A06 5725-A29 5724-Y48 5724-Y49 5724-Y54 5724-Y55 5655-Y21
+Copyright IBM Corp. 1988, 2019.  All Rights Reserved.
+
+Type 'help' for a list of available commands.
+Type 'help' followed by a command name for more
+information on commands.
+
+CPLEX> Problem 'files/737.lp' read.
+Read time = 0.00 sec. (0.03 ticks)
+CPLEX> Tried aggregator 2 times.
+MIP Presolve eliminated 91 rows and 42 columns.
+MIP Presolve modified 48 coefficients.
+Aggregator did 147 substitutions.
+Reduced MIP has 52 rows, 148 columns, and 297 nonzeros.
+Reduced MIP has 147 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.66 ticks)
+Found incumbent of value 196.000000 after 0.00 sec. (0.75 ticks)
+Probing fixed 0 vars, tightened 6 bounds.
+Probing time = 0.00 sec. (0.15 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 52 rows, 148 columns, and 297 nonzeros.
+Reduced MIP has 147 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.30 ticks)
+Probing time = 0.00 sec. (0.04 ticks)
+Clique table members: 49.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 4 threads.
+Root relaxation solution time = 0.00 sec. (0.31 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          196.0000        7.0000            96.43%
+      0     0      130.6667     4      196.0000      130.6667       74   33.33%
+*     0+    0                          132.0000      130.6667             1.01%
+      0     0      130.6667     6      132.0000       Cuts: 4       79    1.01%
+*     0+    0                          131.5000      130.6667             0.63%
+      0     0      130.6667     8      131.5000       Cuts: 3       85    0.63%
+*     0+    0                          131.0000      130.6667             0.25%
+      0     0        cutoff            131.0000      131.0000       85    0.00%
+Elapsed time = 0.01 sec. (3.94 ticks, tree = 0.01 MB, solutions = 4)
+
+Mixed integer rounding cuts applied:  1
+Lift and project cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (3.95 ticks)
+Parallel b&c, 4 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (3.95 ticks)
+
+Solution pool: 4 solutions saved.
+
+MIP - Integer optimal solution:  Objective =  1.3100000000e+02
+Solution time =    0.01 sec.  Iterations = 85  Nodes = 0
+Deterministic time = 3.95 ticks  (301.28 ticks/sec)
+
+CPLEX> Incumbent solution
+Variable Name           Solution Value
+r                           131.000000
+x111                          1.000000
+x121                          1.000000
+x112                          1.500000
+x132                          1.500000
+x113                          2.000000
+x133                          2.000000
+x114                          2.500000
+x134                          2.500000
+x115                          3.000000
+x135                          3.000000
+x126                          3.500000
+x136                          3.500000
+x127                          4.000000
+x137                          4.000000
+x211                          1.500000
+x231                          1.500000
+x212                          2.000000
+x232                          2.000000
+x213                          2.500000
+x233                          2.500000
+x224                          3.000000
+x234                          3.000000
+x225                          3.500000
+x235                          3.500000
+x226                          4.000000
+x236                          4.000000
+x217                          4.500000
+x237                          4.500000
+x311                          2.000000
+x331                          2.000000
+x312                          2.500000
+x332                          2.500000
+x323                          3.000000
+x333                          3.000000
+x324                          3.500000
+x334                          3.500000
+x325                          4.000000
+x335                          4.000000
+x316                          4.500000
+x336                          4.500000
+x317                          5.000000
+x327                          5.000000
+x411                          2.500000
+x431                          2.500000
+x422                          3.000000
+x432                          3.000000
+x423                          3.500000
+x433                          3.500000
+x424                          4.000000
+x434                          4.000000
+x415                          4.500000
+x435                          4.500000
+x416                          5.000000
+x436                          5.000000
+x417                          5.500000
+x427                          5.500000
+x521                          3.000000
+x531                          3.000000
+x522                          3.500000
+x532                          3.500000
+x523                          4.000000
+x533                          4.000000
+x514                          4.500000
+x534                          4.500000
+x515                          5.000000
+x525                          5.000000
+x516                          5.500000
+x526                          5.500000
+x517                          6.000000
+x527                          6.000000
+x621                          3.500000
+x631                          3.500000
+x622                          4.000000
+x632                          4.000000
+x613                          4.500000
+x633                          4.500000
+x614                          5.000000
+x634                          5.000000
+x615                          5.500000
+x625                          5.500000
+x616                          6.000000
+x636                          6.000000
+x617                          6.500000
+x627                          6.500000
+x721                          4.000000
+x731                          4.000000
+x722                          4.500000
+x732                          4.500000
+x713                          5.000000
+x733                          5.000000
+x714                          5.500000
+x724                          5.500000
+x715                          6.000000
+x725                          6.000000
+x716                          6.500000
+x726                          6.500000
+x717                          7.000000
+x727                          7.000000
+c11                          10.000000
+c12                           9.000000
+c13                          17.000000
+c21                          11.000000
+c22                          11.000000
+c23                          21.000000
+c31                          14.000000
+c32                          16.000000
+c33                          20.000000
+c41                          18.000000
+c42                          16.000000
+c43                          23.000000
+c51                          21.000000
+c52                          27.000000
+c53                          15.000000
+c61                          28.000000
+c62                          20.000000
+c63                          23.000000
+c71                          30.000000
+c72                          34.000000
+c73                          14.000000
+d11                           7.000000
+d21                          12.000000
+d31                          17.000000
+d12                           6.000000
+d22                          15.000000
+d32                          21.000000
+d13                          14.000000
+d23                          11.000000
+d33                          25.000000
+d14                          18.000000
+d24                          16.000000
+d34                          23.000000
+d15                          24.000000
+d25                          24.000000
+d35                          15.000000
+d16                          28.000000
+d26                          20.000000
+d36                          23.000000
+d17                          35.000000
+d27                          34.000000
+d37                           9.000000
+u111                          1.000000
+u121                          1.000000
+u112                          1.000000
+u132                          1.000000
+u113                          1.000000
+u133                          1.000000
+u114                          1.000000
+u134                          1.000000
+u115                          1.000000
+u135                          1.000000
+u126                          1.000000
+u136                          1.000000
+u127                          1.000000
+u137                          1.000000
+u211                          1.000000
+u231                          1.000000
+u212                          1.000000
+u232                          1.000000
+u213                          1.000000
+u233                          1.000000
+u224                          1.000000
+u234                          1.000000
+u225                          1.000000
+u235                          1.000000
+u226                          1.000000
+u236                          1.000000
+u217                          1.000000
+u237                          1.000000
+u311                          1.000000
+u331                          1.000000
+u312                          1.000000
+u332                          1.000000
+u323                          1.000000
+u333                          1.000000
+u324                          1.000000
+u334                          1.000000
+u325                          1.000000
+u335                          1.000000
+u316                          1.000000
+u336                          1.000000
+u317                          1.000000
+u327                          1.000000
+u411                          1.000000
+u431                          1.000000
+u422                          1.000000
+u432                          1.000000
+u423                          1.000000
+u433                          1.000000
+u424                          1.000000
+u434                          1.000000
+u415                          1.000000
+u435                          1.000000
+u416                          1.000000
+u436                          1.000000
+u417                          1.000000
+u427                          1.000000
+u521                          1.000000
+u531                          1.000000
+u522                          1.000000
+u532                          1.000000
+u523                          1.000000
+u533                          1.000000
+u514                          1.000000
+u534                          1.000000
+u515                          1.000000
+u525                          1.000000
+u516                          1.000000
+u526                          1.000000
+u517                          1.000000
+u527                          1.000000
+u621                          1.000000
+u631                          1.000000
+u622                          1.000000
+u632                          1.000000
+u613                          1.000000
+u633                          1.000000
+u614                          1.000000
+u634                          1.000000
+u615                          1.000000
+u625                          1.000000
+u616                          1.000000
+u636                          1.000000
+u617                          1.000000
+u627                          1.000000
+u721                          1.000000
+u731                          1.000000
+u722                          1.000000
+u732                          1.000000
+u713                          1.000000
+u733                          1.000000
+u714                          1.000000
+u724                          1.000000
+u715                          1.000000
+u725                          1.000000
+u716                          1.000000
+u726                          1.000000
+u717                          1.000000
+u727                          1.000000
+All other variables in the range 1-337 are 0.
+CPLEX> 
