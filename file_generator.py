@@ -134,13 +134,22 @@ class FileGenerator:
         """ Returns a string with each line being a non-negativity constraint.
             This will go under the 'Bounds' heading.
         """
-        bounds = []
+        constraints = {
+            "r": {"\tr >= 0"}, 
+            "x": set(),
+            "c": set(),
+            "d": set(),
+            }
         for i in range(1, self.x + 1):
             for j in range(1, self.z + 1):
-                for k in range(1, self.y + 1):
-                    bounds.append(f"\tx{i}{k}{j} >= 0")
-        equality_constraints = "\n".join(bounds)
-        equality_constraints += "\n"
+                for k in range(1, self.y + 1): 
+                    constraints["x"].add(f"\tx{i}{k}{j} >= 0")
+                    constraints["c"].add(f"\tc{i}{k} >= 0")
+                    constraints["d"].add(f"\td{k}{j} >= 0")
+        equality_constraints = ""
+        for values in constraints.values():
+            equality_constraints += "\n".join(values)
+            equality_constraints += "\n"
         return equality_constraints
 
     def binaries_constraints(self):

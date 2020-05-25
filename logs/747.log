@@ -41,24 +41,24 @@ Root relaxation solution time = 0.00 sec. (0.51 ticks)
       0     0       98.0000    12       99.5000       Cuts: 4      114    1.51%
 *     0+    0                           99.0000       98.0000             1.01%
       0     2       98.0000     5       99.0000       98.0000      114    1.01%
-Elapsed time = 0.02 sec. (8.80 ticks, tree = 0.02 MB, solutions = 4)
+Elapsed time = 0.03 sec. (8.80 ticks, tree = 0.02 MB, solutions = 4)
 *     8+    1                           98.5000       98.0000             0.51%
 *    33+    2                           98.0000       98.0000             0.00%
 
 Root node processing (before b&c):
-  Real time             =    0.02 sec. (8.77 ticks)
+  Real time             =    0.03 sec. (8.77 ticks)
 Parallel b&c, 4 threads:
   Real time             =    0.01 sec. (1.84 ticks)
   Sync time (average)   =    0.00 sec.
   Wait time (average)   =    0.00 sec.
                           ------------
-Total (root+branch&cut) =    0.03 sec. (10.61 ticks)
+Total (root+branch&cut) =    0.04 sec. (10.61 ticks)
 
 Solution pool: 8 solutions saved.
 
 MIP - Integer optimal solution:  Objective =  9.8000000000e+01
-Solution time =    0.03 sec.  Iterations = 293  Nodes = 48
-Deterministic time = 10.61 ticks  (315.31 ticks/sec)
+Solution time =    0.04 sec.  Iterations = 293  Nodes = 48
+Deterministic time = 10.61 ticks  (290.53 ticks/sec)
 
 CPLEX> Incumbent solution
 Variable Name           Solution Value
